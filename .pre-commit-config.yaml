@@ -1,0 +1,18 @@
+#roda verificações antes de fazer um commit no Git
+
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black #formatador de código automático - indentação, quebra de linhas, espaçamentos tudo padronizado
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort #organiza imports
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8 #verfica código morto, variáveis não usadas e linhas muito longas
+

@@ -1,0 +1,21 @@
+#Util
+Django==5.0.2
+djangorestframework==3.15.0
+django-environ==0.11.2
+requests==2.32.3
+
+# Area cache
+django-redis==5.4.0
+
+# Area testes
+pytest==8.1.1
+pytest-django==4.8.0
+factory-boy==3.3.0
+
+# Area Qualidade
+black==24.2.0
+isort==5.13.2
+flake8==7.1.1
+
+# Tipagem opcional
+mypy==1.10.0

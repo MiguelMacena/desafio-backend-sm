@@ -1,0 +1,34 @@
+#orquestrador - monta vários containers juntos, cada um com sua função
+
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: desafio-web #nome do container
+    command: python src/manage.py runserver 0.0.0.0:8000 #sobe o Djnago no Container
+    volumes:
+      - .:/app #mapeia pasta local para  qualquer mudança ser mudada instantaneamente 
+    ports:
+      - "8000:8000"
+    depends_on: #A aplicação deve ser iniciado depois que o Postgre e redis estiver subindo
+      - db
+      - redis
+    env_file:
+      - .env
+
+  db:
+    image: postgres:16
+    container_name: desafio-db
+    environment:
+      POSTGRES_DB: desafio_backend_sm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5433:5432"
+
+  redis:
+    image: redis:7
+    container_name: desafio-redis
+    ports:
+      - "6379:6379"
