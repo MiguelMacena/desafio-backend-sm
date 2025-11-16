@@ -18,7 +18,7 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-# adiciona a pasta 'src' no sys.path 
+# adiciona a pasta 'src' no sys.path
 # permiti importar 'config' (o pacote do projeto)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(BASE_DIR, "src"))
