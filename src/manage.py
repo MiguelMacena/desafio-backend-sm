@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -17,9 +17,10 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+
 # adiciona a pasta 'src' no sys.path para permitir importar 'config' (o pacote do projeto)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
