@@ -15,9 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from apps.pokemons.views import PokemonViewsSet
+from apps.trainers.views import TrainerPokemonViewSet, TrainerViewSet
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+# cria automaticamente toda as URLS para cada View SET
+# registra os endpoints seguindo o padrão REST
+router.register(r"trainers", TrainerViewSet)
+router.register(r"pokemons", PokemonViewsSet)
+router.register(r"trainer-pokemons", TrainerPokemonViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1", include(router.urls)),
+    # inclui todas as rotas dentro da api/v1
 ]
