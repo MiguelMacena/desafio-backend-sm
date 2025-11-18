@@ -1,5 +1,6 @@
-from apps.pokemons.models import Pokemon
 from django.db import models
+
+from apps.pokemons.models import Pokemon
 
 
 class Trainer(models.Model):

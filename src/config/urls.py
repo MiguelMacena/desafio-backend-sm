@@ -15,11 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from apps.pokemons.views import PokemonViewsSet
-from apps.trainers.views import TrainerPokemonViewSet, TrainerViewSet
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+
+from apps.pokemons.views import PokemonViewsSet
+from apps.trainers.views import TrainerPokemonViewSet, TrainerViewSet
 
 router = routers.DefaultRouter()
 # cria automaticamente toda as URLS para cada View SET
