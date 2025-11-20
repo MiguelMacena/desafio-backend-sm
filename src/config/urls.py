@@ -31,6 +31,6 @@ router.register(r"trainer-pokemons", TrainerPokemonViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1", include(router.urls)),
-    # inclui todas as rotas dentro da api/v1
+    path("api/v1/", include(router.urls)),
+    # inclui todas as rotas dentro da api/v1/
 ]
