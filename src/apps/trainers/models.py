@@ -11,7 +11,8 @@ class Trainer(models.Model):
 
     pokemon = models.ManyToManyField(
         # cria relacionamento ManyToMany entre treinador e Pokemons
-        "Pokemon",
+        "pokemons.Pokemon",
+        # acessa pokemons para pegar o model
         through="TrainerPokemon",
         # possibilita controlar a tabela criada pelo Django
         related_name="treinadores",
