@@ -1,5 +1,6 @@
 import requests
 from rest_framework import viewsets
+from rest_framework.exceptions import NotFound
 
 from .models import Pokemon
 from .serializers import PokemonSerializers
@@ -24,10 +25,18 @@ class PokemonViewsSet(viewsets.ModelViewSet):
         resp = requests.get(poke_url)
         # busca as informações da Poke API
 
+        if resp.status_code == 404:
+            raise NotFound("Pokemon não encontrado na Pokedex")
+        # trata o tipo de erro para ajudar o usuário
+
         if resp.status_code != 200:
-            raise ValueError("Pokemon não encontrado na sua Pokedex")
+            raise ValueError("Erro ao consultar a API")
+        # trata o tipo de erro para ajudar o usuário
 
         data = resp.json()
+        foto = data["sprites"]["front_default"]
+        altura = data["height"]
+        peso = data["weight"]
         # armazena tudo sobre o pokemon
 
         foto = data["sprites"]["front_default"]
