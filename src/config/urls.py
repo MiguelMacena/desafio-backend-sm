@@ -20,6 +20,7 @@ from django.urls import include, path
 from rest_framework import routers
 
 from apps.pokemons.views import PokemonViewsSet
+from apps.pokemons.views_battle import BattleView
 from apps.trainers.views import TrainerPokemonViewSet, TrainerViewSet
 
 router = routers.DefaultRouter()
@@ -32,5 +33,6 @@ router.register(r"trainer-pokemons", TrainerPokemonViewSet)
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)),
+    path("api/v1/battle/", BattleView.as_view()),
     # inclui todas as rotas dentro da api/v1/
 ]

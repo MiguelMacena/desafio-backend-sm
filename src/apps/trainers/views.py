@@ -67,9 +67,7 @@ class TrainerViewSet(viewsets.ModelViewSet):
         try:
             pokemon = Pokemon.objects.get(id=pokemon_id)
         except Pokemon.DoesNotExist:
-            return Response(
-                {"error": "Pokemon não encontrado. "}, status=404
-            )  # noqa: E501
+            return Response({"error": "Pokemon não encontrado. "}, status=404)
         # verifica se o pokemon existe
 
         try:
@@ -80,7 +78,7 @@ class TrainerViewSet(viewsets.ModelViewSet):
         except TrainerPokemon.DoesNotExist:
             return Response(
                 {"error": "Este treinador não possui este Pokemon"}, status=404
-            )  # noqa: E501
+            )
         # busca a relação entre o pokemon e o treinador
 
         return Response(
