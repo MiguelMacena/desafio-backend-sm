@@ -1,7 +1,6 @@
 import requests
 from rest_framework import viewsets
-from rest_framework.exceptions import NotFound
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException, NotFound
 
 from .models import Pokemon
 from .serializers import PokemonSerializers
@@ -35,9 +34,11 @@ class PokemonViewsSet(viewsets.ModelViewSet):
         # trata o tipo de erro para ajudar o usuário
 
         data = resp.json()
-        #se for da PokeAPI usa sprites
-        #se for mock usa foto, altura, peso
-        foto = data.get("sprites", {}).get("front_default") or data.get("foto")  # noqa: E501 
+        # se for da PokeAPI usa sprites
+        # se for mock usa foto, altura, peso
+        foto = data.get("sprites", {}).get("front_default") or data.get(
+            "foto"
+        )  # noqa: E501
         altura = data.get("height") or data.get("altura")
         peso = data.get("weight") or data.get("peso")
         # armazena tudo sobre o pokemon
