@@ -1,6 +1,7 @@
 import pytest
 
-from apps.trainers.models import Trainer
+from apps.pokemons.models import Pokemon
+from apps.trainers.models import Trainer, TrainerPokemon
 
 
 @pytest.mark.django_db
@@ -37,3 +38,42 @@ def test_list_trainers_api(client):
     assert len(response.data) == 2
     # confirma se foi listado
     # dois treinadores
+
+
+@pytest.mark.django_db
+def test_add_pokemon_to_trainer(client):
+    trainer = Trainer.objects.create(nome="Ash", idade=15)
+    pokemon = Pokemon.objects.create(nome="pikachu")
+    # cria treinador e pokemon ficticio
+
+    url = f"/api/v1/trainers/{trainer.id}/add_pokemon/"
+    payload = {"pokemon_id": pokemon.id}
+    # indica qual o enpoint do método add_pokemon
+
+    response = client.post(url, payload, format="json")
+    # simula um POST enviando o pokemon_id
+
+    assert response.status_code == 201
+    # valida se foi CREATED
+    assert TrainerPokemon.objects.count() == 1
+    # garante que foi feito a criação da relação
+    # na tabela
+
+
+@pytest.mark.django_db
+def test_remove_pokemon_from_trainer(client):
+    trainer = Trainer.objects.create(nome="Ash", idade=15)
+    pokemon = Pokemon.objects.create(nome="pikachu")
+    TrainerPokemon.objects.create(trainer=trainer, pokemon=pokemon)
+    # cria treinador, pokemon e relação ficticia
+
+    url = f"/api/v1/trainers/{trainer.id}/remove-pokemon/{pokemon.id}/"
+    # passa a base da URL para o DELETE
+
+    response = client.delete(url, format="json")
+    # simula um DELETE enviando o pokemon_id
+
+    assert response.status_code == 200
+    # valida se deu SUCESS
+    assert TrainerPokemon.objects.count() == 0
+    # garante que foi feito a remoção da table
