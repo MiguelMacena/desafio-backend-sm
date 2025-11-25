@@ -1,6 +1,7 @@
 import requests
 from rest_framework import viewsets
 from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import APIException
 
 from .models import Pokemon
 from .serializers import PokemonSerializers
@@ -30,19 +31,19 @@ class PokemonViewsSet(viewsets.ModelViewSet):
         # trata o tipo de erro para ajudar o usuário
 
         if resp.status_code != 200:
-            raise ValueError("Erro ao consultar a API")
+            raise APIException("Erro ao consultar a API")
         # trata o tipo de erro para ajudar o usuário
 
         data = resp.json()
-        foto = data["sprites"]["front_default"]
-        altura = data["height"]
-        peso = data["weight"]
+        #se for da PokeAPI usa sprites
+        #se for mock usa foto, altura, peso
+        foto = data.get("sprites", {}).get("front_default") or data.get("foto")  # noqa: E501 
+        altura = data.get("height") or data.get("altura")
+        peso = data.get("weight") or data.get("peso")
         # armazena tudo sobre o pokemon
 
-        foto = data["sprites"]["front_default"]
-        altura = data["height"]
-        peso = data["weight"]
-        # extração de dados necessários
+        if not foto or not altura or not peso:
+            raise ValueError("Dados do Pokemon inválidos")
 
         serializer.save(
             nome=nome,
