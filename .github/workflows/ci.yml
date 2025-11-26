@@ -9,6 +9,18 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest #cria uma Vm limpa para rodar tudo dentro dela
+
+    services:
+      redis:
+        image: redis:latest
+      ports:
+        - 6379:6379
+      options: >-
+        --health-cmd "redis-cli ping"
+        --health-interval 5s
+        --health-timeout 5s
+        --health-retries 5
+
     steps:
       - uses: actions/checkout@v4 #baixa o repositório para máquina virtual
 
