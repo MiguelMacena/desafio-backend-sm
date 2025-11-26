@@ -29,6 +29,11 @@ router = routers.DefaultRouter()
 router.register(r"trainers", TrainerViewSet)
 router.register(r"pokemons", PokemonViewsSet)
 router.register(r"trainer-pokemons", TrainerPokemonViewSet)
+router.register(
+    r"trainers/(?P<trainer_id>\d+)/pokemons",
+    TrainerPokemonViewSet,
+    basename="trainer-pokemons",
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),

@@ -1,9 +1,13 @@
 import requests
 from rest_framework import viewsets
 from rest_framework.exceptions import APIException, NotFound
+from rest_framework.response import Response
+
 
 from .models import Pokemon
 from .serializers import PokemonSerializers
+from apps.core.cache import cache_get, cache_set
+from apps.core.cache import cache_delete
 
 
 class PokemonViewsSet(viewsets.ModelViewSet):
@@ -12,6 +16,23 @@ class PokemonViewsSet(viewsets.ModelViewSet):
     # define que todos os objetos serão buscados para CRUD
     serializer_class = PokemonSerializers
     # serializer que será usado para transformar em Json
+
+    def list(self, requests, *args, **kwargs):
+        key = "pokemon:list"
+        # define a chave unica para a lista
+
+        cached = cache_get(key)
+        if cached:
+            return Response(cached)
+        # se a lista já estiver salva no cache não consulta o banco
+
+        response = super().list(requests, *args, **kwargs)
+        # caso não esteja faz a consulta no banco
+
+        cache_set(key, response.data)
+        # salva no cache
+
+        return response
 
     def perform_create(self, serializer):
         # sobrescreve o comportamento padrão quando é feito um POST
@@ -53,3 +74,16 @@ class PokemonViewsSet(viewsets.ModelViewSet):
             peso=peso,
         )
         # salva dados necessários no banco
+
+        cache_delete("pokemon:list")
+        return super().perform_create(serializer)
+
+    def perform_update(self, serializer):
+        # sobrescreve o comportamento padrão quando é feito um UPDATE
+        cache_delete("pokemon:list")
+        return super().perform_update(serializer)
+
+    def perform_destroy(self, instance):
+        # sobrescreve o comportamento padrão quando é feito um DELETE
+        cache_delete("pokemon:list")
+        return super().perform_destroy(instance)
