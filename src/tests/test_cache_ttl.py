@@ -1,5 +1,6 @@
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
+
 
 def test_cache_ttl():
     cache.set("test_key", "abc", timeout=settings.CACHE_TTL)

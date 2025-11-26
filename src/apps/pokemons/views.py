@@ -3,11 +3,10 @@ from rest_framework import viewsets
 from rest_framework.exceptions import APIException, NotFound
 from rest_framework.response import Response
 
+from apps.core.cache import cache_delete, cache_get, cache_set
 
 from .models import Pokemon
 from .serializers import PokemonSerializers
-from apps.core.cache import cache_get, cache_set
-from apps.core.cache import cache_delete
 
 
 class PokemonViewsSet(viewsets.ModelViewSet):

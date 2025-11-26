@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
+from apps.core.cache import cache_delete, cache_get, cache_set
 from apps.pokemons.models import Pokemon
-from apps.core.cache import cache_get, cache_set, cache_delete
 
 from .models import Trainer, TrainerPokemon
 from .serializers import TrainerPokemonSerializer, TrainerSerializer
@@ -14,7 +14,7 @@ class TrainerViewSet(viewsets.ModelViewSet):
     queryset = Trainer.objects.all()
     # define que todos os objetos serão buscados para CRUD
     serializer_class = TrainerSerializer
-     # serializer que será usado para transformar em Json
+    # serializer que será usado para transformar em Json
 
     def list(self, requests, *args, **kwargs):
         key = "trainers:list"
@@ -44,7 +44,7 @@ class TrainerViewSet(viewsets.ModelViewSet):
         # sobrescreve o comportamento padrão quando é feito um DELETE
         cache_delete("trainers:list")
         return super().perform_destroy(instance)
- 
+
     @action(detail=True, methods=["get"])
     # cria uma rota que vai a um id especifico
     def pokemons(self, request, pk=None):
@@ -64,9 +64,8 @@ class TrainerViewSet(viewsets.ModelViewSet):
         cache_set(key, serializer.data)
         return Response(serializer.data)
 
-    
     @action(detail=True, methods=["post"])
-     # cria uma rota extra que vai a um id especifico
+    # cria uma rota extra que vai a um id especifico
     def add_pokemon(self, request, pk=None):
         trainer = self.get_object()
         # pega o treiner que corresponde ao pk
@@ -82,7 +81,9 @@ class TrainerViewSet(viewsets.ModelViewSet):
             return Response({"error": "Pokemon não encontrado"}, status=404)
         # tenta buscar o Pokemon pelo ID informado, caso contrário 404
 
-        if TrainerPokemon.objects.filter(trainer=trainer, pokemon=pokemon).exists():
+        if TrainerPokemon.objects.filter(
+            trainer=trainer, pokemon=pokemon
+        ).exists():  # noqa: E501
             return Response(
                 {"error": "Este pokemon já está associado ao treinador"},
                 status=400,
@@ -99,7 +100,7 @@ class TrainerViewSet(viewsets.ModelViewSet):
 
         return Response(
             {
-                "message": f"Pokemon '{pokemon.nome}' adicionado ao treinador {trainer.nome}"
+                "message": f"Pokemon '{pokemon.nome}' adicionado ao treinador {trainer.nome}"  # noqa: E501
             },
             status=201,
         )

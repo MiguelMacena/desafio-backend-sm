@@ -1,4 +1,5 @@
 import requests
+
 from apps.core.cache import cache_get, cache_set
 
 
@@ -11,7 +12,10 @@ def fetch_pokemon_data(nome):
         return cached
     # se o Pokemon já estiver no cache ele retorna sem chamar API externa
 
-    response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{nome.lower()}/")
+    response = requests.get(
+        f"https://pokeapi.co/api/v2/pokemon/{nome.lower()}/"
+    )  # noqa: E501
+
     # faz a chamada na API caso não esteja no cache
 
     if response.status_code != 200:

@@ -1,5 +1,6 @@
 import pytest
 from django.core.cache import cache
+
 from apps.trainers.models import Trainer
 
 

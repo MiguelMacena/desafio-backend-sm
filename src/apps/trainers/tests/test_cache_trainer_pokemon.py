@@ -1,7 +1,8 @@
 import pytest
 from django.core.cache import cache
-from apps.trainers.models import Trainer, TrainerPokemon
+
 from apps.pokemons.models import Pokemon
+from apps.trainers.models import Trainer, TrainerPokemon
 
 
 @pytest.mark.django_db
@@ -17,7 +18,9 @@ def test_cache_invalidation_trainer_pokemon(client):
         peso=40,
         foto="url",
     )
-    p2 = Pokemon.objects.create(nome="bulbasaur", altura=7, peso=60, foto="url")
+    p2 = Pokemon.objects.create(
+        nome="bulbasaur", altura=7, peso=60, foto="url"
+    )  # noqa: E501
     # cria o pokemon
 
     TrainerPokemon.objects.create(trainer=trainer, pokemon=p1)

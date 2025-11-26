@@ -1,7 +1,9 @@
-import pytest
 from unittest.mock import patch
-from apps.pokemons.services.pokeapi import fetch_pokemon_data
+
+import pytest
 from django.core.cache import cache
+
+from apps.pokemons.services.pokeapi import fetch_pokemon_data
 
 
 @pytest.mark.django_db

@@ -1,5 +1,5 @@
-from django.core.cache import cache
 from django.conf import settings
+from django.core.cache import cache
 
 CACHE_TTL = getattr(settings, "CACHE_TTL", 600)
 # pega o TTL padrão, caso contrário 10 minutos
