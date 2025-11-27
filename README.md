@@ -108,7 +108,6 @@ DELETE - /trainers/id/ <br>
 GET  - /pokemons/ <br>
 POST - /pokemons/  → cria e busca dados na PokeAPI <br>
 GET  -  /pokemons/id/ <br>
-PUT - /pokemons/id/ <br>
 DELETE - /pokemons/id/ <br>
 
 
