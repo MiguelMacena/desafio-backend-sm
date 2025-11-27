@@ -46,7 +46,7 @@ def test_add_pokemon_to_trainer(client):
     pokemon = Pokemon.objects.create(nome="pikachu")
     # cria treinador e pokemon ficticio
 
-    url = f"/api/v1/trainers/{trainer.id}/add_pokemon/"
+    url = f"/api/v1/trainers/{trainer.id}/add-pokemon/"
     payload = {"pokemon_id": pokemon.id}
     # indica qual o enpoint do método add_pokemon
 

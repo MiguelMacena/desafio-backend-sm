@@ -32,7 +32,7 @@ def test_cache_invalidation_trainer_pokemon(client):
     # com o treinador
 
     client.post(
-        f"/api/v1/trainers/{trainer.id}/add_pokemon/",
+        f"/api/v1/trainers/{trainer.id}/add-pokemon/",
         {"pokemon_id": p2.id},
         content_type="application/json",
     )
