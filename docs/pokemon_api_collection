@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "ae7c7d58-fb01-462f-beac-dce515f24abd",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43701875",
+		"_collection_link": "https://miguelmacena.postman.co/workspace/Miguel-Macena's-Workspace~e02b5219-b15c-40a4-841f-eeabccd2e51a/collection/43701875-ae7c7d58-fb01-462f-beac-dce515f24abd?action=share&source=collection_link&creator=43701875"
+	},
+	"item": [
+		{
+			"name": "Projeto-Backend",
+			"item": [
+				{
+					"name": "Pokemons",
+					"item": [
+						{
+							"name": "Inserir Pokemons",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"nome\": \"pikachu\" }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local}}/api/v1/pokemons/"
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Pokemons",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{local}}/api/v1/pokemons/"
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar Pokemons",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"nome\": \"pikachu\" }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local}}/api/v1/pokemons/{{id}}/"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints responsáveis pelo gerenciamento de Pokémons no sistema.\n\nPermitem criar novos Pokémons (com dados consumidos automaticamente da PokeAPI), listar todos os Pokémons cadastrados e visualizar informações individuais\n\nExemplos:\n\n<img src=\"https://content.pstmn.io/31f5c373-7760-4754-a135-68f7b399c4e6/aW1hZ2UucG5n\" width=\"1174\" height=\"430\">\n\n<img src=\"https://content.pstmn.io/c1ab0724-c017-4515-84c7-481dd993f640/aW1hZ2UucG5n\" width=\"1165\" height=\"325\">\n\n<img src=\"https://content.pstmn.io/cd936000-cb60-475f-87ed-960b86531363/aW1hZ2UucG5n\" width=\"1172\" height=\"309\">"
+				},
+				{
+					"name": "Treinadores",
+					"item": [
+						{
+							"name": "Listar Treinadores",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{local}}/api/v1/trainers"
+							},
+							"response": []
+						},
+						{
+							"name": "Inserir Treinadores",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Ash Ketchum\",\r\n  \"idade\": 10\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local}}/api/v1/trainers/"
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar Treinadores",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{local}}/api/v1/trainers/1/"
+							},
+							"response": []
+						},
+						{
+							"name": "Editar Treinadores",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Reginaldo\",\r\n  \"idade\": 20\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local}}/api/v1/trainers/2/"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints para criação, listagem, atualização e remoção de treinadores.\n\nCada treinador pode possuir vários Pokémons associados e participar de batalhas.\n\nExemplos:\n\n<img src=\"https://content.pstmn.io/234198be-78cf-453c-9e1e-040483bf871c/aW1hZ2UucG5n\" alt=\"\" height=\"472\" width=\"1189\">\n\n<img src=\"https://content.pstmn.io/09d3747c-90cb-4955-8652-2fb91d2c5b02/aW1hZ2UucG5n\" width=\"1165\" height=\"349\">\n\n<img src=\"https://content.pstmn.io/c142b664-b41a-4f1f-b710-67521affb16d/aW1hZ2UucG5n\" width=\"1143\" height=\"365\">"
+				},
+				{
+					"name": "Associar Pokemons a Treinadores",
+					"item": [
+						{
+							"name": "Listar Relações",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{local}}/api/v1/trainer-pokemons/"
+							},
+							"response": []
+						},
+						{
+							"name": "Inserir Relações",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"pokemon_id\": 3 }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local}}/api/v1/trainers/2/add-pokemon/"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints utilizados para vincular um Pokémon existente a um treinador.\n\nPermite que treinadores montem suas equipes.\n\nO corpo da requisição recebe apenas o `pokemon_id` a ser associado.\n\nExemplo:  \n  \n\n<img src=\"https://content.pstmn.io/c1fd1c94-ca60-4a2c-b9bb-b91d213a7309/aW1hZ2UucG5n\" alt=\"\n<br>\" height=\"310\" width=\"1174\">\n\n<img src=\"https://content.pstmn.io/0d711a08-2315-4dcc-9539-66b75690d3dd/aW1hZ2UucG5n\" width=\"1183\" height=\"488\">"
+				},
+				{
+					"name": "Dessasociar Pokemon de Treinadores",
+					"item": [
+						{
+							"name": "Deletar Relações",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{local}}/api/v1/trainers/2/remove-pokemon/3/"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoints responsáveis por remover um Pokémon da equipe de um treinador.\n\nUtiliza o método DELETE e recebe o `trainer_id` e `pokemon_id` diretamente na URL.\n\n  \n  \nExemplo:  \n  \n\n<img src=\"https://content.pstmn.io/474cf9b9-6291-4ac3-8bab-a82c53da8211/aW1hZ2UucG5n\" alt=\"\" height=\"257\" width=\"1172\">"
+				},
+				{
+					"name": "Batalha de Pokemons",
+					"item": [
+						{
+							"name": "Batalhar entre Pokemons",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"pokemon_1\": 2,\r\n  \"pokemon_2\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{local}}/api/v1/battle/"
+							},
+							"response": []
+						}
+					],
+					"description": "Endpoint que executa uma batalha entre dois Pokémons.  \n  \nA batalha segue a regra: **o Pokémon com maior peso vence**.  \n  \nTreinadores diferentes são obrigatórios e empates são tratados automaticamente  \n  \n  \nExemplo:  \n  \n\n<img src=\"https://content.pstmn.io/1ec5c8c4-ea05-47d7-afa6-921533b6ae3e/aW1hZ2UucG5n\" alt=\"\" height=\"817\" width=\"1189\">"
+				}
+			]
+		}
+	]
+}
