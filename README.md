@@ -99,24 +99,24 @@ http://localhost:8000/api/v1/
 👤 Treinadores
 GET  -  /trainers/ <br>
 POST - /trainers/ <br>
-GET  -  /trainers/<id>/ <br>
-PUT  -  /trainers/<id>/ <br>
-DELETE - /trainers/<id>/ <br>
+GET  -  /trainers/id/ <br>
+PUT  -  /trainers/id/ <br>
+DELETE - /trainers/id/ <br>
 
 
 🔥 Pokémons
 GET  - /pokemons/ <br>
 POST - /pokemons/  → cria e busca dados na PokeAPI <br>
-GET  -  /pokemons/<id>/ <br>
-PUT - /pokemons/<id>/ <br>
-DELETE - /pokemons/<id>/ <br>
+GET  -  /pokemons/id/ <br>
+PUT - /pokemons/id/ <br>
+DELETE - /pokemons/id/ <br>
 
 
 🧩 Associar Pokémon a Treinador
-POST - /trainers/<trainer_id>/add-pokemon/
+POST - /trainers/trainer.id/add-pokemon/
 
 🗑️ Remover Pokémon do Treinador
-DELETE - /api/v1/trainers/<trainer_id>/remove-pokemon/<pokemon_id>/
+DELETE - /api/v1/trainers/trainer.id/remove-pokemon/<pokemon_id>/
 
 🥊 Batalha Pokémon
 POST - /api/v1/pokemons/battle/
