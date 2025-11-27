@@ -113,9 +113,10 @@ DELETE - /pokemons/id/ <br>
 
 🧩 Associar Pokémon a Treinador
 POST - /trainers/trainer.id/add-pokemon/
+GET - /trainer-pokemons/
 
 🗑️ Remover Pokémon do Treinador
-DELETE - /api/v1/trainers/trainer.id/remove-pokemon/<pokemon_id>/
+DELETE - /api/v1/trainers/trainer.id/remove-pokemon/pokemon.id/
 
 🥊 Batalha Pokémon
-POST - /api/v1/pokemons/battle/
+POST - /api/v1/battle/
