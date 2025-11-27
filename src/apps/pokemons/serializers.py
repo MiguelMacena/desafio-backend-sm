@@ -20,3 +20,8 @@ class PokemonSerializers(serializers.ModelSerializer):
 
         read_only_fields = ("foto", "altura", "peso")
         # garante que o usuário só envie o nome
+
+
+class BattleSerializer(serializers.Serializer):
+    pokemon_1 = serializers.IntegerField()
+    pokemon_2 = serializers.IntegerField()

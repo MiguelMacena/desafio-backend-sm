@@ -1,12 +1,12 @@
 import requests
-from rest_framework import viewsets
+from rest_framework import generics, viewsets
 from rest_framework.exceptions import APIException, NotFound
 from rest_framework.response import Response
 
 from apps.core.cache import cache_delete, cache_get, cache_set
 
 from .models import Pokemon
-from .serializers import PokemonSerializers
+from .serializers import BattleSerializer, PokemonSerializers
 
 
 class PokemonViewsSet(viewsets.ModelViewSet):
@@ -86,3 +86,28 @@ class PokemonViewsSet(viewsets.ModelViewSet):
         # sobrescreve o comportamento padrão quando é feito um DELETE
         cache_delete("pokemon:list")
         return super().perform_destroy(instance)
+
+
+class BattleView(generics.CreateAPIView):
+    serializer_class = BattleSerializer
+
+    def perform_create(self, serializer):
+        pokemon_1 = serializer.validated_data["pokemon_1"]
+        pokemon_2 = serializer.validated_data["pokemon_2"]
+
+        # lógica de batalha
+        if pokemon_1.peso > pokemon_2.peso:
+            vencedor = pokemon_1.nome
+        elif pokemon_2.peso > pokemon_1.peso:
+            vencedor = pokemon_2.nome
+        else:
+            vencedor = "Empate"
+
+        self.resultado = {
+            "pokemon_1": pokemon_1.nome,
+            "pokemon_2": pokemon_2.nome,
+            "vencedor": vencedor,
+        }
+
+    def create(self, request, *args, **kwargs):
+        return Response(self.resultado)
