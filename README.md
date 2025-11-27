@@ -97,19 +97,19 @@ Base URL:
 http://localhost:8000/api/v1/
 
 👤 Treinadores
-GET  -  /trainers/
-POST - /trainers/
-GET  -  /trainers/<id>/
-PUT  -  /trainers/<id>/
-DELETE - /trainers/<id>/
+GET  -  /trainers/ <br>
+POST - /trainers/ <br>
+GET  -  /trainers/<id>/ <br>
+PUT  -  /trainers/<id>/ <br>
+DELETE - /trainers/<id>/ <br>
 
 
 🔥 Pokémons
-GET  - /pokemons/
-POST - /pokemons/  → cria e busca dados na PokeAPI
-GET  -  /pokemons/<id>/
-PUT - /pokemons/<id>/
-DELETE - /pokemons/<id>/
+GET  - /pokemons/ <br>
+POST - /pokemons/  → cria e busca dados na PokeAPI <br>
+GET  -  /pokemons/<id>/ <br>
+PUT - /pokemons/<id>/ <br>
+DELETE - /pokemons/<id>/ <br>
 
 
 🧩 Associar Pokémon a Treinador
