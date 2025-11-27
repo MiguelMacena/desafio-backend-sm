@@ -64,7 +64,7 @@ class TrainerViewSet(viewsets.ModelViewSet):
         cache_set(key, serializer.data)
         return Response(serializer.data)
 
-    @action(detail=True, methods=["post"])
+    @action(detail=True, methods=["post"], url_path="add-pokemon")
     # cria uma rota extra que vai a um id especifico
     def add_pokemon(self, request, pk=None):
         trainer = self.get_object()
